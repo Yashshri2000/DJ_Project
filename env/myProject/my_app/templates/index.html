@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+  {% comment %} <div class="row"> {% endcomment %}
+      {% comment %} <div class="col-sm-12 mb-3">
+          <h4 class="text-center"> Welcome {{ user.username }} </h4>
+      </div> {% endcomment %}
+    <div>
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand"> Welcome {{user.username}} !</a>
+          <form class="d-flex">
+            <button class="btn btn-outline-success" type="submit"><a href='accounts/logout'>Logout</a></button>
+            <button class="btn btn-outline-success" type="submit"><a href="{% url 'edit_profile' id=1 %}">Edit</a></button>
+
+          </form>
+        </div>
+      </nav>
+    </div>
+
+    <div>
+        <div class="container mt-5">
+            <div class="row">
+              <div class="col-sm-8">
+                <pre><h3>My profile</h3></pre>
+               
+                <div class="content-section">
+                    <div class="media">
+                        <img width="200" height="200" class="rounded-circle account-img" src="{{ user.profile.image.url }} ">
+                        <br><br>
+                        <div class="media-body">
+                            <p class="text-secondary">Address : {{ user.profile.address }}</p>
+                            <p class="text-secondary">City: {{ user.profile.city }}</p>
+                            <p class="text-secondary">Phone : {{ user.profile.phone }}</p>
+                        </div>
+                        </div>
+                    </div>
+            
+                </div>    
+               
+                <div class="col-sm-4">
+                    <h3>Column 2</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                </div>
+             </div>
+            </div>
+        </div>
+    </div>
+
+  {% else %}
+  {% comment %} <a href='accounts/login'>Login</a> {% endcomment %}
+{% include 'account/login.html' %}
+  {% endif %}
+
+  {% endblock content %}
+
+
+
+{% comment %} {% load socialaccount %}
+
+{% if user.is_authenticated %}
+   Hello, {{ user.username }}. <a href='accounts/logout'>Logout</a>
+{% else %}
+<a href='accounts/login'>Login</a>
+    {% comment %} <a href="{% provider_login_url 'facebook' %}">Login or Sign Up</a> {% endcomment %}
+{% comment %} {% endif %} {% endcomment %} 
+
+
+
+
+
+
+
+
+
+
